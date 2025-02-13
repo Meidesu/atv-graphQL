@@ -1,4 +1,4 @@
-import { Montadora } from "@/@types/montadora";
+import { Montadora } from "@/@types/montadora.type";
 
 export interface Modelo {
   id: number;

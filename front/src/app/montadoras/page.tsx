@@ -1,5 +1,6 @@
 // "use client"
 // import { useEffect, useState } from "react";
+import { Montadora } from "@/@types/montadora.type";
 import { obterMontadoras } from "@/services/montadoras.service";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,9 +17,7 @@ export default async function Montadoras() {
 
   //   const response = await fetch("http://localhost:4000/api/montadoras");
 
-  const montadoras = await obterMontadoras();
-
-  console.log(montadoras);
+  const montadoras: Montadora[] = await obterMontadoras();
 
   //   if (!response.ok) {
   //     throw new Error("Erro ao solicitar montadoras");

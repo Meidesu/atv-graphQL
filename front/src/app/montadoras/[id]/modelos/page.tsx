@@ -1,4 +1,4 @@
-import { Modelo } from "@/@types/modelo";
+import { Modelo } from "@/@types/modelo.type";
 import { obterModelosPorMontadora } from "@/services/modelos.service";
 
 interface ModeloProps {

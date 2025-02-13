@@ -16,6 +16,12 @@ export class Montadora extends BaseEntity {
   @Column()
   nome: String;
 
+  @Column()
+  pais: string;
+
+  @Column()
+  ano_fundacao: number;
+
   @OneToMany(() => Modelo, (modelo) => modelo.montadora)
   modelos: Modelo[];
 }

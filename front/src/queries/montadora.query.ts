@@ -5,6 +5,11 @@ export const LISTAR_MONTADORAS = gql`
     montadoras {
       id
       nome
+      pais
+      ano_fundacao
+      modelos {
+        nome
+      }
     }
   }
 `;

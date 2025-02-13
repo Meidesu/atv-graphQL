@@ -1,4 +1,4 @@
-import { Modelo } from "@/@types/modelo";
+import { Modelo } from "@/@types/modelo.type";
 import client from "@/config/apollo-client";
 import MODELOS_MONTADORA from "@/queries/modelo.query";
 
