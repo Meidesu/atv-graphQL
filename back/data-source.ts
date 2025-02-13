@@ -15,8 +15,8 @@ export const AppDataSource = new DataSource({
   synchronize: false,
   logging: true,
   entities: [Montadora, Modelo], // pode ser como abaixo
-  migrations: ["src/persistence/typeorm/migrations/**/*.ts"],
-  migrationsTableName: "migrations_typeorm",
+  migrations: ["./src/persistence/typeorm/migrations/*.{ts,js}"],
+  migrationsTableName: "migrations_typeorm"
 });
 
 AppDataSource.initialize()
