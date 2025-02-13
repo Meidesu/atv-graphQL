@@ -83,5 +83,63 @@ export const resolvers = {
 
       return await modelo.save();
     },
+
+    deletarModelo: async (_parent: any, args: { id: number }, _context: MyGQLContext, _info: any) => {
+      console.log(`Deletando modelo com ID: ${args.id}`);
+    
+      const modelo = await Modelo.findOne({ where: { id: args.id } });
+    
+      if (!modelo) {
+        throw new Error("Modelo não encontrado");
+      }
+    
+      await modelo.remove();
+    
+      return {
+        id: args.id,  
+        nome: modelo.nome,  
+      };
+    },
+
+    deletarMontadora: async (_parent: any, args: { id: number }) => {
+      console.log(`Tentando deletar a montadora com ID: ${args.id}`);
+    
+      const montadora = await Montadora.findOne({
+        where: { id: args.id },
+        relations: ["modelos"],
+      });
+    
+      if (!montadora) {
+        console.log("Montadora não encontrada!");
+        throw new Error("Montadora não encontrada");
+      }
+    
+      if (montadora.modelos.length > 0) {
+        console.log("Montadora possui modelos, não pode ser deletada.");
+        return {
+          id: montadora.id,
+          nome: montadora.nome,
+          message: "A montadora não pode ser deletada porque possui modelos associados.",
+        };
+      }
+    
+      const montadoraDeletada = {
+        id: montadora.id,
+        nome: montadora.nome,
+        message: "Montadora deletada com sucesso!",
+      };
+    
+      console.log("Deletando montadora...");
+      await montadora.remove();
+    
+      return montadoraDeletada;
+    }
+    
+    
+
+    
+
+
+    
   },
 };

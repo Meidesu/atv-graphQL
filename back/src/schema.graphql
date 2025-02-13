@@ -20,6 +20,9 @@ type Mutation {
   criarModelo(content: ModeloPostContent): Modelo
   editarMontadora(id: ID!, content: MontadoraPostContent): Montadora
   editarModelo(id: ID!, content: ModeloPostContent): Modelo
+  deletarModelo(id: ID!): Modelo
+  deletarMontadora(id: ID!): MontadoraDeleteContent
+ 
 }
 
 input MontadoraPostContent {
@@ -30,3 +33,10 @@ input ModeloPostContent {
   nome: String!
   montadoraId: ID!
 }
+
+type MontadoraDeleteContent {
+  id: ID!
+  nome: String
+  message: String
+}
+
