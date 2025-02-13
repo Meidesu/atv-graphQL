@@ -13,6 +13,7 @@ type Modelo {
 type Query {
   montadoras: [Montadora]
   modelos: [Modelo]
+  modelosPorMontadora(montadoraId: ID!): [Modelo]
 }
 
 type Mutation {
