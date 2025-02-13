@@ -23,23 +23,37 @@ export const resolvers = {
       console.log(`User: ${context.user}`);
       return await Modelo.find();
     },
+    modelosPorMontadora: async (
+      _parent: any,
+      _args: any,
+      context: MyGQLContext,
+      _info: any
+    ) => {
+      return await Modelo.find({
+        where: { montadora: { id: _args.montadoraId } },
+      });
+    },
   },
 
   Modelo: {
     montadora: async (parent: Modelo) => {
       console.log(`Buscando montadora para o modelo ${parent.id}`);
-      const toma = await Modelo.find({ relations: ["montadora"] });
 
-      console.log(toma);
+      const modelo = await Modelo.findOne({
+        where: { id: parent.id },
+        relations: { montadora: true },
+      });
 
-      return parent.montadora;
+      return modelo?.montadora;
     },
   },
 
   Montadora: {
     modelos: async (parent: Montadora) => {
       console.log(`Buscando modelos para a montadora ${parent.id}`);
-      const modelos = await Modelo.find({ where: { montadora: parent } });
+      const modelos = await Modelo.find({
+        where: { montadora: { id: parent.id } },
+      });
 
       console.log(modelos);
 

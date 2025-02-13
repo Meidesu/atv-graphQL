@@ -2,6 +2,8 @@ type Montadora {
   id: ID!
   nome: String
   modelos: [Modelo]
+  pais: String
+  ano_fundacao: Int!
 }
 
 type Modelo {
@@ -13,6 +15,7 @@ type Modelo {
 type Query {
   montadoras: [Montadora]
   modelos: [Modelo]
+  modelosPorMontadora(montadoraId: ID!): [Modelo]
 }
 
 type Mutation {
@@ -22,11 +25,12 @@ type Mutation {
   editarModelo(id: ID!, content: ModeloPostContent): Modelo
   deletarModelo(id: ID!): Modelo
   deletarMontadora(id: ID!): MontadoraDeleteContent
- 
 }
 
 input MontadoraPostContent {
   nome: String
+  pais: String
+  ano_fundacao: Int
 }
 
 input ModeloPostContent {
@@ -39,4 +43,3 @@ type MontadoraDeleteContent {
   nome: String
   message: String
 }
-
